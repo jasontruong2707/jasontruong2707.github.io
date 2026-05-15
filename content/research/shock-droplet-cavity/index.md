@@ -3,11 +3,9 @@ title: 'Effect of Embedded Cavities on Fragmentation Behaviors of Droplets in Sh
 date: 2024-10-01
 summary: First numerical study of how embedded cavities drive droplet deformation and fragmentation under shock loading in supersonic flows. Presented at the 16th Dayton Engineering Sciences Symposium (Oct 2024) — manuscript in preparation for *Physics of Fluids* / *JFM*.
 tags:
-  - Shock-Droplet Interactions
-  - Multiphase Flows
-  - STAR-CCM+
+  - Multiphase Flow
 categories:
-  - Shock-Droplet & Multiphase Flows
+  - Multiphase Flow
 authors:
   - me
 links:

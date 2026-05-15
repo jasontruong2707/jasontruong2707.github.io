@@ -3,13 +3,9 @@ title: 'Large Eddy Simulations of Recirculation Structures in Isothermal Swirlin
 date: 2024-06-01
 summary: Characterizing recirculation-zone transitions and angular-momentum penetration in three swirler configurations via POD/DMD analysis of LES velocity fields. Manuscript in preparation for *Physics of Fluids*.
 tags:
-  - LES
-  - Swirling Flows
-  - POD
-  - DMD
-  - ParaView
+  - Turbulent Flow
 categories:
-  - LES & Turbulence
+  - Turbulent Flow
 authors:
   - me
 weight: 40

@@ -3,14 +3,9 @@ title: 'Gel Atomization in Impinging Jets'
 date: 2024-09-01
 summary: Implementing Herschel-Bulkley rheology and a custom IMEX ARS(2,2,2) defect-correction time integrator across three open-source solvers to simulate gel propellant atomization in impinging jets.
 tags:
-  - Gel Propellants
-  - Atomization
-  - Multiphase
-  - MFC
-  - JAX-Fluids
-  - FluidX3D
+  - Multiphase Flow
 categories:
-  - Atomization & Multiphase Flows
+  - Multiphase Flow
 authors:
   - me
 featured: true

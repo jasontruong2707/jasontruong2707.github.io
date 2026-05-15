@@ -3,14 +3,11 @@ title: 'LES of Spray and Combustion Processes in a Bluff-Body Stabilized High-Sp
 date: 2025-03-01
 summary: Post-processing LES data to characterize mixing, flame dynamics, vortex shedding, and combustion instabilities downstream of a V-gutter flameholder. Co-authored manuscript in preparation.
 tags:
-  - LES
   - Combustion
-  - Bluff Body
-  - FFT
-  - POD
-  - OpenCV
+  - Turbulent Flow
 categories:
-  - LES & Combustion
+  - Combustion
+  - Turbulent Flow
 authors:
   - me
 weight: 50

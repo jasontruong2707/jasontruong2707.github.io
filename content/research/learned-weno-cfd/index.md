@@ -4,11 +4,10 @@ date: 2025-01-15
 summary: A solver-in-the-loop machine-learning pipeline in JAX-Fluids that learns optimal WENO3 reconstruction weights for 2D compressible turbulence using a differentiable Euler solver.
 tags:
   - Machine Learning
-  - WENO
-  - JAX
-  - Compressible Turbulence
+  - Turbulent Flow
 categories:
-  - ML-Accelerated CFD
+  - Machine Learning
+  - Turbulent Flow
 authors:
   - me
 featured: true
