@@ -7,7 +7,7 @@ name:
   family: Truong
   alternate: ''
   pronunciation: ''
-  pronouns: '(he/him)'
+  pronouns: 'he/him'
 postnominals: []
 status:
   icon: "🚀"
@@ -78,16 +78,6 @@ experience:
       production cost reduction and 10% flight-time durability improvement through
       iterative ground testing. Collaborated with Electrical, AI/ML, Design, and Testing
       teams to inform LiDAR object-scanning system design.
-
-  - role: Manufacturing & Testing Engineer
-    org: AeroCats — RC Aircraft Design & Manufacturing Club, UC
-    start: 2022-08-22
-    end: 2023-04-30
-    summary: |
-      Built 4 RC aircraft/UAVs with 16-ft wingspans for national intercollegiate
-      competitions using laser-cut hardwood, pine, and balsa. Performance-tested 6 turbine
-      models via 3 testing methods and identified the optimal design for maximum payload at
-      SAE Aero Design West (4th overall, Regular Class, May 2023).
 
 skills:
   - name: Programming & HPC

@@ -4,10 +4,8 @@ date: 2025-03-01
 summary: Post-processing LES data to characterize mixing, flame dynamics, vortex shedding, and combustion instabilities downstream of a V-gutter flameholder. Co-authored manuscript in preparation.
 tags:
   - Combustion
-  - Turbulent Flow
 categories:
   - Combustion
-  - Turbulent Flow
 authors:
   - me
 weight: 50

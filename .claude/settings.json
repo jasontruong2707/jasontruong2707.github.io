@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs -I {} basename {})",
+      "PowerShell(Set-Location \"c:\\\\Users\\\\ASUS\\\\Personal_Website\"; Get-Process hugo -ErrorAction SilentlyContinue | Stop-Process -Force; $env:Path = \"c:\\\\Users\\\\ASUS\\\\Personal_Website\\\\node_modules\\\\.bin;\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Remove-Item -Recurse -Force public, resources -ErrorAction SilentlyContinue; hugo 2>&1 | Select-Object -Last 12; \"Exit: $LASTEXITCODE\"; Test-Path public\\\\research\\\\index.html; \"Sizes:\"; \\(Get-Item public\\\\research\\\\index.html -ErrorAction SilentlyContinue\\).Length)",
+      "PowerShell($env:Path = \"c:\\\\Users\\\\ASUS\\\\Personal_Website\\\\node_modules\\\\.bin;\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location \"c:\\\\Users\\\\ASUS\\\\Personal_Website\"; hugo server --port 1313 --bind 127.0.0.1 --disableFastRender --noBuildLock)"
+    ]
+  }
+}

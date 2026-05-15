@@ -1,17 +1,17 @@
 main:
-  - name: Home
+  - name: Homepage
     url: /
     weight: 10
-  - name: CV
+  - name: Profile & CV
     url: experience/
     weight: 20
-  - name: Research
+  - name: Research Experiences
     url: research/
     weight: 30
-  - name: Extracurricular
+  - name: Extracurricular Activities
     url: extracurricular/
     weight: 40
-  - name: Talks
+  - name: Conferences
     url: /#talks
     weight: 50
   - name: News

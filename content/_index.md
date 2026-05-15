@@ -5,6 +5,17 @@ date: 2026-05-15
 type: landing
 
 sections:
+  - block: markdown
+    content:
+      title: ''
+      subtitle: ''
+      text: |-
+        Welcome to my website — where I share my research activities in **Aerospace Engineering**. I specialize in computational fluid dynamics of high-speed compressible flows, large eddy simulation of turbulent reacting flows, multiphase dynamics, gel propellant atomization, and machine learning-accelerated CFD.
+    design:
+      columns: '1'
+      spacing:
+        padding: ['2rem', 0, '0.5rem', 0]
+
   - block: resume-biography-3
     content:
       username: me
@@ -15,7 +26,7 @@ sections:
       headings:
         about: ''
         education: ''
-        interests: ''
+        interests: 'Research Interests'
     design:
       background:
         gradient_mesh:
@@ -45,7 +56,7 @@ sections:
   - block: collection
     id: talks
     content:
-      title: Talks & Conferences
+      title: Conferences
       filters:
         folders:
           - events
