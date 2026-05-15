@@ -1,0 +1,19 @@
+main:
+  - name: Home
+    url: /
+    weight: 10
+  - name: CV
+    url: experience/
+    weight: 20
+  - name: Research
+    url: research/
+    weight: 30
+  - name: Extracurricular
+    url: extracurricular/
+    weight: 40
+  - name: Talks
+    url: /#talks
+    weight: 50
+  - name: News
+    url: /#news
+    weight: 60
