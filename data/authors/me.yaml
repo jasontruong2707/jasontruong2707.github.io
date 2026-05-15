@@ -7,20 +7,19 @@ name:
   family: Truong
   alternate: ''
   pronunciation: ''
-  pronouns: ''
+  pronouns: '(he/him)'
 postnominals: []
 status:
   icon: "🚀"
-role: Undergraduate Researcher in Aerospace Engineering
+role: Undergraduate Researcher
 bio: |
-  I am an undergraduate aerospace engineering researcher at the University of Cincinnati,
-  working with Prof. Prashant Khare and Dr. Kamin Manu in the Computational Multiphysics
-  Laboratory. My research lives at the intersection of high-speed compressible flows,
-  multiphase dynamics, combustion, and machine-learning-accelerated CFD — from shock-driven
-  droplet fragmentation and gel propellant atomization to LES of recirculation structures
-  and spray combustion in high-speed combustors. I'm preparing to pursue a PhD in this area
-  and continue building computational tools that bridge first-principles physics and modern
-  machine learning.
+  I am an undergraduate aerospace engineering researcher at the University of Cincinnati, 
+  working with Prof. Prashant Khare and Dr. Kamin Manu in the Multiphase Flow and Combustion Laboratory.
+  My work sits at the intersection of high-speed compressible flows, multiphase dynamics, reacting flows, 
+  and machine-learning-accelerated CFD - spanning shock-driven droplet fragmentation, gel propellant atomization, 
+  LES post-processing of recirculation structures in swirling jets, and spray combustion in bluff-body stabilized 
+  combustors. I am preparing to pursue a PhD to continue developing computational methods for turbulent reacting 
+  and multiphase flows.
 
 affiliations:
   - name: University of Cincinnati
@@ -43,7 +42,7 @@ interests:
   - Machine Learning-accelerated CFD
 
 education:
-  - degree: BSc in Aerospace Engineering (GPA 3.97/4.0)
+  - degree: BS Aerospace Engineering
     institution: University of Cincinnati
     start: 2022-08-22
     end: 2027-05-15
@@ -60,7 +59,7 @@ education:
 
 experience:
   - role: Undergraduate Research Assistant
-    org: University of Cincinnati — Computational Multiphysics Laboratory
+    org: University of Cincinnati — Multiphase Flow and Combustion Laboratory
     start: 2024-01-15
     summary: |
       Advisors: Prof. Prashant Khare, Dr. Kamin Manu. Five active projects spanning
@@ -103,6 +102,7 @@ skills:
         level: 4
       - label: SLURM / Linux HPC
         level: 5
+
   - name: CFD & Simulation
     items:
       - label: MFC, JAX-Fluids, FluidX3D, ECOGEN, Eilmer4, Gerris
@@ -133,17 +133,17 @@ languages:
 awards:
   - title: Davis Professor R.T. Award — Best Undergraduate Student in Computational Research
     awarder: University of Cincinnati
-    date: "2026-03-01"
+    date: "2026-03-15"
     summary: ''
     icon: hero/trophy
   - title: Best Presentation Award in Combustion
     awarder: 16th Dayton Engineering Sciences Symposium
-    date: "2025-05-01"
+    date: "2025-05-15"
     summary: ''
     icon: hero/trophy
   - title: Undergraduate Research Fellowship
     awarder: University of Cincinnati
-    date: "2024-10-01"
+    date: "2024-10-22"
     summary: ''
     icon: hero/trophy
   - title: UC Innovation Challenge Scholarship
