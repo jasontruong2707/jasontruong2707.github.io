@@ -1,0 +1,56 @@
+{{/*
+  Render a different image depending on the active theme (light vs dark).
+
+  Usage in a markdown body:
+
+      {{< themed-image light="featured_1.png" dark="featured.png" alt="AeroCats" >}}
+
+  - `light`: filename or path for the image shown in light theme.
+  - `dark`:  filename or path for the image shown in dark theme.
+  - `alt`:   accessible alt text (optional).
+  - `class`: extra CSS classes (optional).
+
+  Filenames are resolved relative to the page's bundle (the folder that
+  holds `index.md`). Absolute paths starting with `/` and full `http(s)://`
+  URLs are also accepted.
+
+  Both <img> tags are emitted in the HTML, but only one is visible at a
+  time thanks to Tailwind's `dark:` modifier (which toggles based on the
+  `.dark` class added to <html> by the site's theme toggle).
+*/}}
+
+{{- $light := .Get "light" -}}
+{{- $dark  := .Get "dark"  -}}
+{{- $alt   := .Get "alt"   | default "" -}}
+{{- $cls   := .Get "class" | default "rounded-lg" -}}
+
+{{- $resolve := dict -}}
+{{- $lightURL := "" -}}
+{{- $darkURL  := "" -}}
+
+{{- if $light -}}
+  {{- if or (hasPrefix $light "/") (hasPrefix $light "http") -}}
+    {{- $lightURL = $light -}}
+  {{- else -}}
+    {{- with .Page.Resources.GetMatch $light -}}
+      {{- $lightURL = .RelPermalink -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $dark -}}
+  {{- if or (hasPrefix $dark "/") (hasPrefix $dark "http") -}}
+    {{- $darkURL = $dark -}}
+  {{- else -}}
+    {{- with .Page.Resources.GetMatch $dark -}}
+      {{- $darkURL = .RelPermalink -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $lightURL -}}
+<img class="block dark:hidden {{ $cls }}" src="{{ $lightURL }}" alt="{{ $alt }}" />
+{{- end -}}
+{{- if $darkURL -}}
+<img class="hidden dark:block {{ $cls }}" src="{{ $darkURL }}" alt="{{ $alt }}" />
+{{- end -}}

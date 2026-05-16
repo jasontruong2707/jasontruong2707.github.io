@@ -8,7 +8,7 @@ sections:
     content:
       title: ''
       text: |
-        A snapshot of my research focus areas. Click any card below to see the projects, methods, and publications associated with that field.
+        Here is a tour of the research I'm working on - mostly through short videos of the simulations, because flows look way cooler in motion than in a paper. Each card opens into a brief overview of the projects. The technical depth lives in the publications, coming soon
     design:
       columns: '1'
 
@@ -19,8 +19,8 @@ sections:
       text: ''
       items:
         - name: Multiphase Flow
-          description: I run numerical simulations of multiphase flows in high-speed environments — including droplet breakup, shock–droplet interactions, gel propellant atomization, and spray dynamics.
-          emoji: 💧
+          description: Droplet fragmentation, shock–droplet interactions, and gel propellant atomization.
+          image: research/multiphase.png
           gradient: from-blue-400 to-cyan-500
           status: active
           topics:
@@ -33,8 +33,8 @@ sections:
             url: /tags/multiphase-flow/
 
         - name: Turbulent Flow
-          description: I conduct high-fidelity Large Eddy Simulations of compressible and swirling turbulent flows, characterizing recirculation structures, mixing, and flow instabilities.
-          emoji: 🌀
+          description: Large Eddy Simulations of swirling, compressible turbulent flows and flame instabilities.
+          image: research/turbulent.png
           gradient: from-indigo-400 to-purple-500
           status: active
           topics:
@@ -47,8 +47,8 @@ sections:
             url: /tags/turbulent-flow/
 
         - name: Combustion
-          description: I study spray combustion and flame stabilization in high-speed propulsion systems, with a focus on combustion instabilities and flame dynamics in bluff-body stabilized combustors.
-          emoji: 🔥
+          description: Spray combustion, flame stabilization, and combustion instabilities in high-speed combustors.
+          image: research/combustion.png
           gradient: from-orange-400 to-red-500
           status: active
           topics:
@@ -61,8 +61,8 @@ sections:
             url: /tags/combustion/
 
         - name: Machine Learning
-          description: I build machine learning frameworks for accelerating computational fluid dynamics — including solver-in-the-loop pipelines that learn improved numerical schemes from high-fidelity simulation data.
-          emoji: 🧠
+          description: Machine learning frameworks for accelerating computational fluid dynamics.
+          image: research/ml.png
           gradient: from-emerald-400 to-teal-600
           status: active
           topics:

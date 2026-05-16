@@ -2,7 +2,7 @@ schema: hugoblox/author/v1
 slug: me
 is_owner: true
 name:
-  display: Nhan Truong
+  display: Nhan (Jason) Truong
   given: Nhan
   family: Truong
   alternate: ''
@@ -47,7 +47,7 @@ education:
     start: 2022-08-22
     end: 2027-05-15
     summary: |
-      Relevant coursework: Gas Dynamics, Aerodynamics, Rocket Propulsion, Air Breathing
+      Relevant courseworks: Gas Dynamics, Aerodynamics, Rocket Propulsion, Air Breathing
       Propulsion, Introduction to CFD, Advanced Compressible Flows.
 
       Senior project: *"Effect of Embedded Cavities on Fragmentation Behaviors of Droplets

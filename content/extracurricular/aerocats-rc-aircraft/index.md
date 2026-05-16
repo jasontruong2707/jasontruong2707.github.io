@@ -12,7 +12,11 @@ authors:
   - me
 featured: true
 weight: 20
+image:
+  preview_only: true
 ---
+
+{{< themed-image light="logo_dark.png" dark="logo_light.png" alt="AeroCats — UC RC Aircraft Design & Manufacturing Club" >}}
 
 ## What I did
 

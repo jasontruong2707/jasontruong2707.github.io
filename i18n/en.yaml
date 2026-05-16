@@ -1,0 +1,5 @@
+# Local i18n overrides. Strings here override the matching ids in the theme's
+# `i18n/en.yaml` so we can rename built-in headings without forking the theme.
+
+- id: experience
+  translation: Experiences

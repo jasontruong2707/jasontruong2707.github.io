@@ -22,6 +22,9 @@ removePathAccents: true
 ############################
 
 cascade:
+  # Hide the social-share icons (X, Facebook, e-mail, LinkedIn, WhatsApp) site-wide.
+  # Any page that wants them back can override with `share: true` in its frontmatter.
+  - share: false
   - target:
       path: /slides/**
       kind: page

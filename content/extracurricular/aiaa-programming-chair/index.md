@@ -12,6 +12,16 @@ authors:
   - me
 featured: true
 weight: 10
+image:
+  caption: 
+  focal_point:
+links:
+  - icon: hero/globe-alt 
+    url: https://campuslink.uc.edu/organization/american-institute-of-aeronautics-and-astronautics
+  - icon: brands/linkedin
+    url: https://linkedin.com/company/uc-aiaa/
+  - icon: brands/instagram
+    url: https://www.instagram.com/uc_aiaa/
 ---
 
 ## What I do

@@ -1,0 +1,43 @@
+/* ---------------------------------------------------------------
+ * Custom overrides for the HugoBlox academic-cv theme.
+ * This file is auto-loaded by `layouts/_partials/site_head.html`.
+ * --------------------------------------------------------------- */
+
+/* Widen the Abstract / metadata grid on event/talk detail pages.
+ * Default theme constrains it with `max-w-prose` (≈ 65ch ≈ 700px) which
+ * makes long abstracts feel cramped. We expand to a comfortable width. */
+.max-w-prose.grid {
+  max-width: min(100%, 100rem);
+}
+
+/* Widen the article body content (e.g., long author-affiliation lines
+ * on event/talk pages). Tailwind Typography caps `.prose` at ~80ch by
+ * default; we expand it so single-line affiliations don't wrap awkwardly. */
+.prose,
+.prose.lg\:prose-xl {
+  max-width: min(100%, 80rem);
+}
+
+/* Icon-only frontmatter `links:` buttons.
+ * When a page's link entry has `name:` empty, the theme falls back to the
+ * literal text "Link". We collapse text to zero font-size and give the SVG
+ * an explicit pixel size so the icon stays visible and properly sized. */
+.hb-attachment-link {
+  font-size: 0;
+  line-height: 0;
+}
+.hb-attachment-link svg {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+}
+
+/* Theme-aware homepage avatar.
+ * The bio block renders <img class="avatar"> with a Hugo-processed src
+ * pointing at assets/media/authors/me.jpeg. In light mode we swap to a
+ * second image via CSS `content: url(...)`, which replaces the displayed
+ * image without changing the HTML. The <img>'s width/height attributes
+ * still control the display box, so the file should be a square crop.
+ * Put the light-mode file at static/media/authors/me_light.jpeg. */
+html:not(.dark) .avatar-wrapper img.avatar {
+  content: url('/media/authors/me_light.png');
+}

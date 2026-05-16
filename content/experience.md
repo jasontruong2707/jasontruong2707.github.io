@@ -1,5 +1,5 @@
 ---
-title: 'Professional Experience'
+title: 'Professional Experiences'
 date: 2026-05-15
 type: landing
 
@@ -15,14 +15,10 @@ sections:
       is_education_first: false
   - block: resume-skills
     content:
-      title: Skills
+      title: Techincal Skills
       username: me
   - block: resume-awards
     content:
-      title: Awards
-      username: me
-  - block: resume-languages
-    content:
-      title: Languages
+      title: Honors and Awards
       username: me
 ---
