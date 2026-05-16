@@ -37,7 +37,7 @@
  * second image via CSS `content: url(...)`, which replaces the displayed
  * image without changing the HTML. The <img>'s width/height attributes
  * still control the display box, so the file should be a square crop.
- * Put the light-mode file at static/media/authors/me_light.jpeg. */
+ * Put the light-mode file at static/media/authors/me_light.jpg. */
 html:not(.dark) .avatar-wrapper img.avatar {
-  content: url('/media/authors/me_light.png');
+  content: url('/media/authors/me_light.jpg');
 }
