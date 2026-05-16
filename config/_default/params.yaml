@@ -86,6 +86,8 @@ hugoblox:
     sticky: true
     # Menu alignment
     align: center # left | center | right
+    # Hide the brand text ("Nhan Truong") in the navbar
+    show_title: false
     # Feature toggles
     search: true
     theme_toggle: true
