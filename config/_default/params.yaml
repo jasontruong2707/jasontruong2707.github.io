@@ -89,7 +89,7 @@ hugoblox:
     # Hide the brand text ("Nhan Truong") in the navbar
     show_title: false
     # Feature toggles
-    search: true
+    search: false
     theme_toggle: true
     theme_picker: true
     language_switcher: true
