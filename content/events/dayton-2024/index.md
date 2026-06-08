@@ -39,6 +39,6 @@ Hypersonics Laboratory, Digital Futures, University of Cincinnati, Cincinnati, O
 
 This work received the **DESS Best Presentation Award in Combustion** at the ASME Dayton Section's 16th Dayton Engineering Sciences Symposium, October 29, 2024.
 
-![DESS Best Presentation plaque — Nhan Truong, Combustion, 2024](plaque.jpeg)
+![DESS Best Presentation plaque for Nhan Truong, Combustion, 2024](plaque.jpeg)
 
 ![Award recipients at the ASME Dayton Section DESS 2024 ceremony](group.jpeg)

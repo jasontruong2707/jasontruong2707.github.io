@@ -31,6 +31,41 @@
   height: 1.5rem !important;
 }
 
+/* Highlight the Download CV button with a soft pulsing ring,
+ * bolder text, larger font, and bigger padding. */
+a[href$="_CV.pdf"] {
+  font-weight: 900 !important;
+  font-size: 1.375rem !important;
+  padding: 1.25rem 2.5rem !important;
+  animation: cv-pulse 2.5s ease-in-out infinite;
+}
+
+a[href$="_CV.pdf"] svg {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+}
+
+@keyframes cv-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 0 rgba(99, 102, 241, 0.55),
+      0 10px 20px -5px rgba(0, 0, 0, 0.15);
+  }
+  50% {
+    box-shadow:
+      0 0 0 10px rgba(99, 102, 241, 0),
+      0 10px 20px -5px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Project card thumbnails: show the whole image inside the card area
+ * without stretching or cropping. The theme defaults to `object-fit: fill`
+ * which can distort the image when the aspect ratios don't match. */
+img.object-fill {
+  object-fit: contain !important;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
 /* Theme-aware homepage avatar.
  * The bio block renders <img class="avatar"> with a Hugo-processed src
  * pointing at assets/media/authors/me.jpeg. In light mode we swap to a

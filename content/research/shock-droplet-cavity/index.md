@@ -10,6 +10,11 @@ authors:
   - me
 featured: true
 weight: 10
+image:
+  filename: research/multiphase.png
+  caption: 'Multiphase Flow'
+  focal_point: Smart
+  preview_only: true
 ---
 
 *Co-authors: Nhan Truong, Jacob Gamertsfelder, Achyut Panchal, Prashant Khare.*
