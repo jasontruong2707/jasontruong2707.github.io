@@ -1,7 +1,7 @@
 ---
-title: 'Large Eddy Simulations of Recirculation Structures in Isothermal Swirling Coaxial Jets'
+title: 'Recirculation Structures in an Isothermal Swirling Coaxial Jet'
 date: 2024-06-01
-summary: Characterizing recirculation-zone transitions and angular-momentum penetration in three swirler configurations via POD/DMD analysis of LES velocity fields. Manuscript in preparation for *Physics of Fluids*.
+summary: Where the recirculation zone sits, how it changes shape with swirl strength, and which large-scale motions carry the most energy in a coaxial swirling jet. LES post-processing with POD/DMD against a reference experimental and numerical dataset.
 tags:
   - Turbulent Flow
 categories:
@@ -11,19 +11,15 @@ authors:
 weight: 40
 ---
 
-## Overview
+*Co-authors: Nhan Truong, Kamin Manu.*
+*Status: ongoing.*
 
-Swirl-stabilized combustors rely on a central toroidal recirculation zone (CTRZ) to anchor flames. The transition from a pre-vortex-breakdown state to a fully formed CTRZ is sensitive to swirler geometry, and understanding *which* swirl-imparting features drive that transition matters for high-speed propulsion design.
+Swirling injectors show up in nearly every gas turbine and liquid rocket engine. The swirl sets up a recirculation zone that loops hot gas back to ignite incoming reactants. Lose that zone and the flame blows out, which makes it the heart of combustor stability. As the swirl gets stronger the zone changes shape, moving from a pre-vortex-breakdown state toward a central recirculation bubble, but how and why that transition happens still isn't settled.
 
-## What I did
+I analyzed LES velocity-field data for three swirler configurations, quantifying the recirculation zone with swirl number, circulation, turbulent kinetic energy and Reynolds stress, and pulling out the dominant motions with POD and DMD. The setup follows Pattanshetti et al.'s experimental and numerical study of the same coaxial jet, so the structures have a reference to sit against.
 
-- **Examined LES velocity field data of three swirler configurations** in ParaView and Python to characterize recirculation-zone transitions from pre-vortex-breakdown to a CTRZ.
-- **Computed swirl number, circulation, and swirl momentum factor** to quantify angular-momentum penetration into recirculation cores.
-- **Computed mean velocity profiles and turbulence statistics** — TKE, Reynolds stresses — to evaluate mixing characteristics and recirculation boundaries.
-- **Implemented POD and DMD in Python** to extract dominant spatial modes, temporal coefficients, and modal frequencies for characterizing flow instabilities.
+> **\[VIDEO PLACEHOLDER\]** Instantaneous velocity with streamlines &nbsp;·&nbsp; **\[VIDEO PLACEHOLDER\]** POD mode 1
+>
+> *Instantaneous velocity magnitude with streamlines (left) and the first POD mode (right) for the pre-vortex-breakdown configuration.*
 
-## Outcome
-
-Manuscript in preparation: **Truong, Manu.** *"Large Eddy Simulations of Recirculation Structures in Isothermal Swirling Coaxial Jet,"* targeted for *Physics of Fluids*.
-
-*Advisor: Dr. Kamin Manu.*
+The piece I still need to nail down is what the first POD mode physically represents, whether it's a precessing vortex core or a shear-layer oscillation, before I read too much into its frequency content.

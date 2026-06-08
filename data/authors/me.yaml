@@ -13,13 +13,11 @@ status:
   icon: "🚀"
 role: Undergraduate Research Assistant
 bio: |
-  I am an undergraduate aerospace engineering researcher at the University of Cincinnati, 
-  working with Prof. Prashant Khare and Dr. Kamin Manu in the Multiphase Flow and Combustion Laboratory.
-  My work sits at the intersection of high-speed compressible flows, multiphase dynamics, reacting flows, 
-  and machine-learning-accelerated CFD - spanning shock-driven droplet fragmentation, gel propellant atomization, 
-  LES post-processing of recirculation structures in swirling jets, and spray combustion in bluff-body stabilized 
-  combustors. I am preparing to pursue a PhD to continue developing computational methods for turbulent reacting 
-  and multiphase flows.
+  I'm an undergraduate aerospace engineering researcher at the University of Cincinnati,
+  working with Prof. Prashant Khare and Dr. Kamin Manu in the Multiphase Flow and
+  Combustion Laboratory. My work focuses on high-speed compressible flows, multiphase
+  dynamics, reacting flows, and machine-learning-accelerated CFD. I'm preparing to
+  pursue a PhD in this area.
 
 affiliations:
   - name: University of Cincinnati
@@ -51,7 +49,7 @@ education:
       Propulsion, Introduction to CFD, Advanced Compressible Flows.
 
       Senior project: *"Effect of Embedded Cavities on Fragmentation Behaviors of Droplets
-      in Shock-Laden Flows"* — Advisor: Prof. Prashant Khare.
+      in Shock-Laden Flows"* (Advisor: Prof. Prashant Khare).
     button:
       text: Download CV
       url: /uploads/NhanTruong_CV.pdf
@@ -59,69 +57,26 @@ education:
 
 experience:
   - role: Undergraduate Research Assistant
-    org: University of Cincinnati — Multiphase Flow and Combustion Laboratory
+    org: University of Cincinnati, Multiphase Flow and Combustion Laboratory
     start: 2024-01-15
     summary: |
-      Advisors: Prof. Prashant Khare, Dr. Kamin Manu. Five active projects spanning
-      machine-learning-augmented compressible turbulence, gel propellant atomization, LES
-      of swirling coaxial jets, shock-droplet fragmentation with embedded cavities, and
-      spray combustion in bluff-body-stabilized combustors. Tools: MFC (Fortran),
-      JAX-Fluids, FluidX3D, STAR-CCM+, ParaView, Python (POD/DMD/FFT/OpenCV).
+      Working with Prof. Khare and Dr. Manu on computational fluid dynamics of high-speed
+      flows, covering shock-droplet fragmentation, gel propellant atomization, LES of
+      swirling jets, spray combustion in bluff-body combustors, and a machine-learning
+      approach to numerical schemes.
 
   - role: CFD/CAE Engineering Intern
-    org: MiSmart — Remote-Control UAVs/Drones Startup
+    org: MiSmart, Remote-Control UAVs/Drones Startup
     start: 2023-05-01
     end: 2023-11-30
     summary: |
-      Conducted aerodynamic analysis of 20+ airfoils and 10+ aircraft fuselages in ANSYS
-      Fluent and Python. Designed and tested quadcopter UAVs in SolidWorks — achieved 15%
-      production cost reduction and 10% flight-time durability improvement through
-      iterative ground testing. Collaborated with Electrical, AI/ML, Design, and Testing
-      teams to inform LiDAR object-scanning system design.
+      Built aerodynamic analysis pipelines for VTOL aircraft. Ran simulations on 20+
+      airfoils and 10+ fuselages in ANSYS Fluent, designed quadcopter UAVs in SolidWorks,
+      and worked across the AI/ML, Electrical, and Design teams on LiDAR system integration.
 
-skills:
-  - name: Programming & HPC
-    items:
-      - label: Python
-        level: 5
-      - label: Fortran
-        level: 5
-      - label: C / C++ / Bash
-        level: 4
-      - label: MATLAB, LabVIEW, VBA
-        level: 4
-      - label: SLURM / Linux HPC
-        level: 5
-
-  - name: CFD & Simulation
-    items:
-      - label: MFC, JAX-Fluids, FluidX3D, ECOGEN, Eilmer4, Gerris
-        level: 5
-      - label: STAR-CCM+, ANSYS Fluent, Converge, XFLR5
-        level: 5
-      - label: ParaView, Tecplot 360, Blender, POV-Ray
-        level: 5
-      - label: SolidWorks, Fusion 360
-        level: 4
-  - name: Machine Learning
-    items:
-      - label: JAX
-        level: 5
-      - label: PyTorch
-        level: 4
-      - label: scikit-learn
-        level: 4
-
-languages:
-  - name: English
-    level: 5
-    label: Fluent
-  - name: Vietnamese
-    level: 5
-    label: Native
 
 awards:
-  - title: Davis Professor R.T. Award — Best Undergraduate Student in Computational Research
+  - title: Davis Professor R.T. Award for Best Undergraduate Student in Computational Research
     awarder: University of Cincinnati
     date: "2026-03-15"
     summary: ''
@@ -136,23 +91,8 @@ awards:
     date: "2024-10-22"
     summary: ''
     icon: hero/trophy
-  - title: UC Innovation Challenge Scholarship
-    awarder: University of Cincinnati
-    date: "2023-01-01"
-    summary: 'Jan 2023 – Dec 2024'
-    icon: hero/trophy
-  - title: Fourth Overall — Regular Class Competition
+  - title: Fourth Overall in Regular Class Competition
     awarder: SAE Aero Design West
     date: "2023-05-01"
     summary: ''
-    icon: hero/trophy
-  - title: University Merit Scholarship
-    awarder: University of Cincinnati
-    date: "2022-08-01"
-    summary: 'Aug 2022 – May 2027'
-    icon: hero/trophy
-  - title: University Global Scholarship
-    awarder: University of Cincinnati
-    date: "2022-08-01"
-    summary: 'Aug 2022 – May 2027'
     icon: hero/trophy

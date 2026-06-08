@@ -10,7 +10,7 @@ sections:
       title: ''
       subtitle: ''
       text: |-
-        Welcome to my website — where I share my research activities in **Aerospace Engineering**. I specialize in computational fluid dynamics of high-speed compressible flows, large eddy simulation of turbulent reacting flows, multiphase dynamics, gel propellant atomization, and machine learning-accelerated CFD.
+        Welcome to my website, where I share my personal research projects and experiences.
     design:
       columns: '1'
       spacing:
@@ -39,17 +39,23 @@ sections:
 
   - block: markdown
     content:
-      title: '🔬 What I Work On'
+      title: '🔬 Brief Research Overview'
       subtitle: ''
       text: |-
-        I work on **computational fluid dynamics for high-speed flows**, with a particular focus on multiphase dynamics, combustion, and machine-learning-accelerated solvers. My research spans five active projects:
+        My work spans four areas of computational fluid dynamics for high-speed flows.
 
-        - **Shock–droplet interactions** in supersonic flows, including a first-of-its-kind study of how *embedded cavities* drive fragmentation under shock loading.
-        - **Gel propellant atomization** in impinging-jet configurations, using compressible Navier–Stokes (MFC, JAX-Fluids) and lattice-Boltzmann (FluidX3D) frameworks with Herschel–Bulkley rheology and a custom IMEX ARS(2,2,2) defect-correction time integrator.
-        - **Large Eddy Simulation** of swirling coaxial jets and bluff-body-stabilized high-speed combustors — characterizing recirculation zones, vortex shedding, and combustion instabilities via POD, DMD, and FFT.
-        - **ML-accelerated CFD**: a solver-in-the-loop pipeline in JAX-Fluids that learns optimal WENO3 reconstruction weights on a differentiable Euler solver.
+        ### Multiphase Flow
+        I work on numerical simulations of multiphase flows in high-speed environments, including jet breakup, droplet fragmentation, atomization, and shock-droplet interactions.
 
-        I'm preparing to pursue a PhD continuing in this area. If you're a prospective collaborator, advisor, or just curious — please [reach out](mailto:truongna@mail.uc.edu).
+        ### Turbulent Flow
+        I conduct Large Eddy Simulations of swirling and compressible turbulent flows, studying mixing characteristics, recirculation, and flow instabilities.
+
+        ### Combustion
+        I study spray combustion and flame dynamics in high-speed combustors, including combustion instabilities driven by vortex shedding and acoustic modes.
+
+        ### Machine Learning
+        I build machine learning frameworks for accelerating CFD simulations, using high-fidelity simulation data to learn better numerical schemes for turbulent and reacting flows.
+
     design:
       columns: '1'
 
