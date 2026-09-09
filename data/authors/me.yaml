@@ -14,14 +14,14 @@ status:
 role: Undergraduate Research Assistant
 bio: |
   I'm an undergraduate aerospace engineering researcher at the University of Cincinnati,
-  working with Prof. Prashant Khare and Dr. Kamin Manu in the Multiphase Flow and
+  working with Dr. Prashant Khare in the Multiphase Flow and
   Combustion Laboratory. My work focuses on high-speed compressible flows, multiphase
   dynamics, reacting flows, and machine-learning-accelerated CFD. I'm preparing to
   pursue a PhD in this area.
 
 affiliations:
   - name: University of Cincinnati
-    url: https://aerospace.uc.edu/
+    url: https://www.ceas.uc.edu/academics/departments/aerospace-engineering-mechanics.html
 
 links:
   - icon: at-symbol
