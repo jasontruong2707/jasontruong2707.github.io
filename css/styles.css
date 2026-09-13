@@ -450,14 +450,15 @@ footer {
     border-bottom: 1px solid var(--line);
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
     padding: 1.25rem 1.25rem 1rem;
-    /* Long enough to read as motion on a 60Hz screen, where 220ms is only
-       about 13 frames. Must stay under SLIDE_MS in js/nav.js. */
-    transition: transform 0.34s ease-out;
+    /* No transform transition by default. js/nav.js drives translateY
+       directly from the scroll position, so the bar tracks the finger
+       instead of playing a fixed-length animation. */
+    transition: none;
   }
 
-  /* Slid out of the way while the reader is moving down the page.
-     js/nav.js adds and removes this class. */
-  .sidebar.nav-hidden { transform: translateY(-100%); }
+  /* Only while settling to one end after the reader stops scrolling.
+     During the drag itself the transform is applied with no transition. */
+  .sidebar.settling { transition: transform 0.2s ease-out; }
 
   /* Second tier withheld: a gentle scroll back up returns the menu only.
      The name and contact row come back at the top of the page, or on a
