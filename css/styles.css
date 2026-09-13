@@ -450,7 +450,9 @@ footer {
     border-bottom: 1px solid var(--line);
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
     padding: 1.25rem 1.25rem 1rem;
-    transition: transform 0.22s ease-out;
+    /* Long enough to read as motion on a 60Hz screen, where 220ms is only
+       about 13 frames. Must stay under SLIDE_MS in js/nav.js. */
+    transition: transform 0.34s ease-out;
   }
 
   /* Slid out of the way while the reader is moving down the page.
@@ -468,8 +470,8 @@ footer {
   .sidebar .site-name,
   .sidebar .contact {
     overflow: hidden;
-    transition: max-height 0.22s ease-out, opacity 0.22s ease-out,
-                margin 0.22s ease-out, padding 0.22s ease-out;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out,
+                margin 0.3s ease-out, padding 0.3s ease-out;
   }
 
   /* Kept close to the real heights. A max-height far larger than the

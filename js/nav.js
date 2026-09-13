@@ -25,7 +25,7 @@
 
   var mobile = window.matchMedia('(max-width: 820px)');
   var GRACE_MS = 1200;   /* bar is left alone this long after being used */
-  var SLIDE_MS = 300;    /* must outlast the CSS transform transition */
+  var SLIDE_MS = 400;    /* must outlast the CSS transform transition (0.34s) */
   var DELTA = 6;         /* ignore movement smaller than this */
   var EDGE = 8;          /* how close to the top counts as the top */
   var FAST = 3.5;        /* px per ms that counts as a flick, not a nudge */
