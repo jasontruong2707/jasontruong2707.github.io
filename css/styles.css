@@ -427,15 +427,36 @@ footer {
   .sidebar {
     width: 100%;
     height: auto;
-    position: static;
+    /* Sticky rather than fixed here: it stays in the flow, so the content
+       below is offset automatically even though the bar's height changes
+       when a nav group is opened or the rows rewrap. */
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    /* An opened group cannot swallow the screen */
+    max-height: 70vh;
+    overflow-y: auto;
     border-right: 0;
     border-bottom: 1px solid var(--line);
-    padding: 1.5rem 1.25rem;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+    padding: 1.25rem 1.25rem 1rem;
   }
-  /* Nested groups do not belong in a wrapped row, so stack the nav instead */
-  .sidebar nav a { margin-bottom: 0.7rem; }
-  .sidebar .nav-group { margin-bottom: 0.7rem; }
-  .sidebar .site-name { margin-bottom: 1rem; }
+
+  /* Anchor targets must clear the pinned bar */
+  [id] { scroll-margin-top: 9rem; }
+  /* Lay the nav out as a wrapped row rather than a tall stack, so the bar
+     costs a couple of lines instead of half a phone screen. A group that
+     is opened expands downward inside its own row item. */
+  .sidebar nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.2rem 1.1rem;
+  }
+  .sidebar nav a { margin-bottom: 0.35rem; }
+  .sidebar .nav-group { margin-bottom: 0.35rem; }
+  .sidebar .nav-group a { display: block; margin: 0.3rem 0 0 0.6rem; }
+  .sidebar .site-name { margin-bottom: 0.85rem; min-height: 0; }
   /* Keep the contact links reachable on a phone, laid out as a wrapped row */
   .sidebar .contact {
     margin-top: 1rem;
