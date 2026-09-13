@@ -1,0 +1,455 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap');
+
+:root {
+  --text: #1a1a1a;
+  --muted: #666666;
+  --accent: #1b4f72;
+  --bg: #ffffff;
+  --line: #e2e2e2;
+  --radius: 8px;
+
+  /* Sidebar. Warm off-white rather than the cool grey the reference
+     sites use, so it still reads as a different site. */
+  --side-bg: #f6f4ef;
+  --side-text: #232019;
+  --side-muted: #6b6459;
+  --side-accent: #1b4f72;
+  --side-line: #e4dfd4;
+
+  --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Nothing may push the page wider than the viewport.
+   Must be `clip`, not `hidden`: `hidden` makes body a scroll container,
+   which breaks `position: sticky` on the sidebar. */
+html, body { max-width: 100%; overflow-x: clip; }
+
+/* Anchor jumps land with breathing room instead of flush against the top */
+[id] { scroll-margin-top: 1.5rem; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+img, video, svg { max-width: 100%; }
+
+body {
+  font-family: 'Inter', -apple-system, Segoe UI, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: var(--side-bg);
+  border-right: 1px solid var(--side-line);
+  padding: 1.75rem 1.25rem;
+  /* `fixed`, not `sticky`. Sticky is repositioned by the browser on every
+     scroll frame, which is what let it drift. A fixed element is painted
+     against the viewport and cannot move at all. */
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+.sidebar .site-name {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.3;
+  /* Height is reserved up front: when the web font finishes loading and
+     replaces the fallback, its different metrics cannot reflow the nav
+     and contact rows below it. */
+  min-height: 3.12rem;
+  margin-bottom: 1.35rem;
+}
+
+.sidebar .site-name a { color: var(--side-text); text-decoration: none; }
+
+.sidebar nav a {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--side-text);
+  text-decoration: none;
+}
+
+.sidebar nav a:hover { color: var(--side-accent); }
+.sidebar nav a.active { color: var(--side-accent); font-weight: 600; }
+
+/* Collapsible nav groups, native <details>, no JavaScript */
+.sidebar .nav-group { margin-bottom: 0.75rem; }
+
+.sidebar .nav-group > summary {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  cursor: pointer;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--side-text);
+}
+
+.sidebar .nav-group > summary::-webkit-details-marker { display: none; }
+.sidebar .nav-group > summary:hover { color: var(--side-accent); }
+.sidebar .nav-group.here > summary { color: var(--side-accent); font-weight: 600; }
+
+/* Chevron sits just after the label, points down, and stays faded
+   so it never competes with the nav text */
+.sidebar .nav-group > summary::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  margin-left: 0.45rem;
+  margin-bottom: 3px;
+  border-right: 1.5px solid var(--side-muted);
+  border-bottom: 1.5px solid var(--side-muted);
+  transform: rotate(45deg);
+  transition: transform 0.15s ease;
+}
+
+/* Flips to point up once the group is open */
+.sidebar .nav-group[open] > summary::after {
+  margin-bottom: 0;
+  margin-top: 3px;
+  transform: rotate(-135deg);
+}
+
+/* Children sit smaller and indented under their group */
+.sidebar .nav-group a {
+  margin: 0.42rem 0 0 0.8rem;
+  font-size: 0.83rem;
+  font-weight: 400;
+  color: var(--side-muted);
+  line-height: 1.35;
+}
+
+.sidebar .nav-group a:first-of-type { margin-top: 0.65rem; }
+.sidebar .nav-group a.active { color: var(--side-accent); font-weight: 600; }
+
+.sidebar .contact {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--side-line);
+  /* Sized so the full email address fits beside its icon at 220px */
+  font-size: 0.79rem;
+  color: var(--side-muted);
+}
+
+.sidebar .contact a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--side-muted);
+  text-decoration: none;
+  margin-bottom: 0.45rem;
+  /* Fixed row height, so the row cannot grow or shrink with font metrics */
+  height: 1.45rem;
+}
+
+/* Truncation belongs on the text, not on the flex row */
+.sidebar .contact a span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.45rem;
+}
+
+.sidebar .contact a:hover { color: var(--side-accent); }
+
+/* Inline SVG icons, sized and colored from the link they sit in */
+.icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Brand marks are solid shapes, not outlines */
+.icon-fill { fill: currentColor; stroke: none; }
+
+/* Each icon carries its own color, so it keeps it when the row hovers.
+   These are deliberately brighter than --accent, which is too dark to
+   read as a color at 16px. */
+.icon-mail     { color: #ea4335; }
+.icon-phone    { color: #2f9e44; }
+.icon-linkedin { color: #0a66c2; }
+.icon-github   { color: #24292f; }
+.icon-cv       { color: #7048e8; }
+
+/* ---------- Main ---------- */
+/* Side padding scales with the viewport so the content never touches the edges */
+main { flex: 1; margin-left: 220px; padding: 3rem clamp(1.5rem, 5vw, 4rem) 2.5rem; min-width: 0; }
+
+.container { max-width: 860px; margin: 0 auto; }
+
+h1, h2, h3 { font-family: var(--serif); }
+h1 { font-size: 2.05rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.35rem; font-weight: 600; margin: 2.75rem 0 0.9rem; }
+h3 { font-size: 1.05rem; font-weight: 600; margin: 1.75rem 0 0.4rem; }
+h1 + .lede, h1 + p { margin-top: 0.5rem; }
+
+p { margin-bottom: 1rem; }
+a { color: var(--accent); }
+
+ul, ol { margin: 0 0 1rem 1.25rem; }
+li { margin-bottom: 0.35rem; }
+
+/* Small institution mark sitting inline at the start of a line */
+.inst-logo {
+  height: 1.45em;
+  width: auto;
+  vertical-align: -0.35em;
+  margin-right: 0.45rem;
+}
+
+/* Reads as ordinary text, same as the news headline links, and only
+   reveals itself on hover */
+.plain-link { color: inherit; text-decoration: none; }
+.plain-link:hover { color: var(--accent); }
+
+.lede { color: var(--muted); }
+.meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem; }
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2.5rem 0; }
+
+/* ---------- Intro block ---------- */
+.intro { display: flex; gap: 2rem; flex-wrap: wrap; align-items: flex-start; }
+.intro-photo { width: 180px; flex-shrink: 0; }
+.intro-photo img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: var(--radius); }
+.intro-text { flex: 1; min-width: 280px; }
+
+/* ---------- Research summary (home) ---------- */
+.summary { display: flex; gap: 2rem; flex-wrap: wrap; align-items: flex-start; }
+.summary-text { flex: 1 1 360px; min-width: 280px; }
+
+/* Figures stack vertically beside the text, never wider than their column */
+.summary-figs {
+  flex: 1 1 320px;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  /* Drop the column so it starts level with the first paragraph, not the h1 */
+  padding-top: 3.1rem;
+}
+
+.summary-figs figure { margin: 0; }
+.summary-figs img,
+.summary-figs video {
+  width: 100%;
+  height: auto;
+  /* width/height attributes on the elements give the browser the aspect
+     ratio up front, so the column is sized correctly before media loads */
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #000;
+}
+.summary-figs figcaption { font-size: 0.78rem; color: var(--muted); margin-top: 0.4rem; }
+
+/* Crop in on a clip that carries too much empty frame */
+.summary-figs .zoom { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: #000; line-height: 0; }
+.summary-figs .zoom video { border: 0; border-radius: 0; transform: scale(1.55); transform-origin: 50% 42%; }
+
+/* ---------- Tiles ---------- */
+/* Two wide tiles per row, so an image can sit beside the text
+   and the box still reads as a horizontal rectangle */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.tile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.1rem;
+  min-height: 150px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.1rem;
+  text-align: left;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+}
+
+a.tile:hover { border-color: var(--accent); box-shadow: 0 2px 10px rgba(0,0,0,0.07); }
+
+.tile img {
+  width: 148px;
+  height: 118px;
+  flex-shrink: 0;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) - 2px);
+}
+
+.tile-body { min-width: 0; }
+.tile .tile-name { font-size: 1.02rem; font-weight: 600; margin-bottom: 0.4rem; }
+.tile p { font-size: 0.87rem; color: var(--muted); margin: 0; }
+.tile .tile-count {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Project boxes: two across, image on top */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+.card { display: block; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: inherit; background: #fff; overflow: hidden; }
+.card:hover { border-color: var(--accent); box-shadow: 0 2px 10px rgba(0,0,0,0.07); }
+.card img { width: 100%; height: 150px; object-fit: cover; display: block; border-bottom: 1px solid var(--line); border-radius: 0; }
+.card-body { padding: 1rem; }
+.card-body .card-meta { font-size: 0.74rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.35rem; }
+.card-body h3 { margin: 0 0 0.4rem; font-size: 0.98rem; line-height: 1.4; }
+.card-body p { font-size: 0.87rem; color: var(--muted); margin: 0; }
+
+/* ---------- Listings ---------- */
+.entry {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--line);
+}
+.entry:last-child { border-bottom: 1px solid var(--line); }
+.entry-thumb { width: 130px; flex-shrink: 0; }
+.entry-thumb img { width: 100%; height: auto; display: block; border: 1px solid var(--line); }
+.entry-body { flex: 1; min-width: 0; }
+.entry-body h3 { margin: 0 0 0.3rem; font-size: 1rem; }
+.entry-body h3 a { color: var(--text); text-decoration: none; }
+.entry-body h3 a:hover { color: var(--accent); }
+.entry-body p { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.4rem; }
+.entry-meta { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+
+/* "See all" link closing a previewed list */
+.more { margin-top: 1rem; font-size: 0.9rem; }
+
+/* ---------- Resume items ---------- */
+.item { padding: 1.1rem 0; border-top: 1px solid var(--line); }
+.item:last-child { border-bottom: 1px solid var(--line); }
+/* No wrap, so a long title wraps internally and the date stays pinned
+   top-right instead of dropping onto its own row next to the authors */
+.item-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.item-title { font-weight: 600; }
+.item-date { font-size: 0.85rem; color: var(--muted); white-space: nowrap; }
+.item-org { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.5rem; }
+.item p { font-size: 0.93rem; margin-bottom: 0.5rem; }
+.item p:last-child { margin-bottom: 0; }
+
+/* ---------- Figures ---------- */
+figure { margin: 1.75rem 0; }
+figure img, figure video { width: 100%; height: auto; display: block; border: 1px solid var(--line); }
+figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem; }
+.figure-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+.figure-row > * { flex: 1; min-width: 280px; }
+.narrow { max-width: 680px; margin-left: auto; margin-right: auto; }
+
+/* ---------- Status tags ---------- */
+/* Tags sit on their own row under the title, so every entry lines up
+   regardless of how long its title runs */
+.tag-row { margin: 0.3rem 0 0.35rem; }
+.tag-row .tag { margin-left: 0; }
+
+.tag {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.08rem 0.45rem;
+  border: 1px solid var(--line);
+  font-size: 0.67rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  white-space: nowrap;
+  vertical-align: 0.12em;
+}
+
+.tag-active { color: var(--accent); border-color: var(--accent); }
+
+/* ---------- Buttons ---------- */
+.button {
+  display: inline-block;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+.button:hover { background: var(--accent); color: #fff; }
+
+/* Button sitting beside a plain text link, aligned on the button's centre */
+.actions { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem 1.1rem; }
+.actions a:not(.button) { font-size: 0.9rem; }
+
+.back { font-size: 0.85rem; display: inline-block; margin-bottom: 1.5rem; text-decoration: none; }
+
+/* ---------- Footer ---------- */
+footer {
+  margin-top: 4rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ---------- Responsive ---------- */
+/* Once the summary stacks, the figure column no longer needs the h1 offset */
+@media (max-width: 640px) {
+  .summary-figs { padding-top: 0; }
+}
+
+@media (max-width: 820px) {
+  body { flex-direction: column; }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 1.5rem 1.25rem;
+  }
+  /* Nested groups do not belong in a wrapped row, so stack the nav instead */
+  .sidebar nav a { margin-bottom: 0.7rem; }
+  .sidebar .nav-group { margin-bottom: 0.7rem; }
+  .sidebar .site-name { margin-bottom: 1rem; }
+  /* Keep the contact links reachable on a phone, laid out as a wrapped row */
+  .sidebar .contact {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1rem;
+  }
+  .sidebar .contact a { margin-bottom: 0; }
+  main { margin-left: 0; padding: 2rem 1.25rem; }
+  .entry { flex-direction: column; }
+  .entry-thumb { width: 100%; max-width: 260px; }
+  .tile { min-height: 0; }
+  .tile img { width: 88px; height: 88px; }
+  /* Too narrow to hold a title and a date side by side */
+  .item-head { flex-direction: column; gap: 0.15rem; }
+}

@@ -1,74 +1,58 @@
-# Personal Academic Website
+# jasontruong2707.github.io
 
-My personal academic website, built with [Hugo](https://gohugo.io/) and the [HugoBlox Academic CV](https://github.com/HugoBlox/hugo-theme-academic-cv) theme, hosted on GitHub Pages.
+Personal academic website of Nhan (Jason) Truong. Plain HTML and CSS, no build step and no
+JavaScript. Published with GitHub Pages from the root of the `main` branch.
 
-## Local development
+## Layout
 
-Prerequisites (already installed on this machine):
-- Hugo Extended (`hugo version`)
-- Node.js + npm (`node --version`)
-- Go (`go version`)
+```
+index.html              Home, a research summary with four area tiles
+profile.html            Short profile, links out to the CV for detail
+research.html           Four area tiles
+publications.html       Manuscripts and conference presentations
+extracurricular.html    Extracurricular index
+news.html               News and talks index
 
-```powershell
-# One-time, after fresh clone:
-hugo mod tidy
-npm install
+research/               Four area pages (multiphase-flow, turbulent-flow,
+                        combustion, machine-learning), each listing its
+                        projects as cards, plus one page per project
+extracurricular/        One page per activity
+news/                   One page per news post
+talks/                  One page per talk
 
-# Run a live-reloading local server at http://localhost:1313
-$env:Path = "$PWD\node_modules\.bin;$env:Path"; hugo server
+css/styles.css          The only stylesheet
+img/                    Portrait, section thumbnails, logos
+media/<project>/        Figures and simulation videos, one folder per project
+uploads/                CV
 ```
 
-The Tailwind binary lives in `node_modules\.bin`, so it must be on `PATH` before `hugo` is run.
+## Editing
 
-## Editing content
+Every page is a complete standalone HTML file. The sidebar and footer are copied into each one,
+so changing a nav link means changing it in every file:
 
-Every page is plain Markdown. Edit the file, save, and the local server hot-reloads.
+```bash
+grep -rl 'href="/research.html"' --include='*.html' .
+```
 
-| What you want to change | File or folder |
-| --- | --- |
-| Name, bio, photo, education, skills, awards, social links | `content/authors/me/_index.md` and image at `content/authors/me/avatar.jpg` |
-| Homepage layout (which sections show) | `content/_index.md` |
-| CV / Experience page | `content/experience.md` plus the `work` / `education` / `awards` blocks in `content/authors/me/_index.md` |
-| Research projects | `content/research/<project-slug>/index.md` (add `featured.png` to that folder for a card image) |
-| Extracurricular items | `content/extracurricular/<activity-slug>/index.md` |
-| News posts | `content/blog/<post-slug>/index.md` |
-| Talks / events | `content/events/<event-slug>/index.md` |
-| Site title, tagline, theme colors | `config/_default/params.yaml` |
-| Navigation menu | `config/_default/menus.yaml` |
-| Site URL (`baseURL`) | `config/_default/hugo.yaml` |
-| Your CV PDF (the Download CV button) | drop the file at `static/uploads/resume.pdf` |
+Paths are root-relative (`/css/styles.css`), which is correct both on GitHub Pages and under a
+local server rooted at this directory.
 
-Search for `<<REPLACE ME>>` in the repo to find every spot that needs your info.
+## Preview locally
 
-## Adding a research project
+```bash
+python -m http.server 8000
+```
 
-1. Create `content/research/my-cool-project/index.md`.
-2. Copy the front matter from `content/research/example-project/index.md`.
-3. Set `categories:` to the field name (e.g. `Computer Vision`, `NLP`, `Robotics`) — this is how items get grouped by field.
-4. Drop a square-ish image as `featured.png` in the same folder.
-5. Save. The project appears on `/research/`.
+Then open http://127.0.0.1:8000. Opening the files directly with `file://` will not work, because
+the root-relative paths need a server.
 
-## Adding an extracurricular item
+## Updating the CV
 
-Same pattern as research, in `content/extracurricular/<slug>/`.
+Replace `uploads/NhanTruong_CV.pdf`, keeping the same filename. Every link on the site points at
+that path, so nothing else needs to change.
 
-## Adding a news post
+## Adding a page
 
-Create `content/blog/<slug>/index.md` with `date:` set; it'll show on the homepage News section, newest first.
-
-## Deploying to GitHub Pages
-
-1. Create a repo on GitHub named `<your-username>.github.io` (using your account name makes it deploy at `https://<your-username>.github.io/`).
-2. Push this directory to that repo:
-   ```powershell
-   git init
-   git add .
-   git commit -m "Initial site"
-   git branch -M main
-   git remote add origin https://github.com/<your-username>/<your-username>.github.io.git
-   git push -u origin main
-   ```
-3. On GitHub, go to **Settings → Pages**. Under "Build and deployment", set **Source** to **GitHub Actions**.
-4. The workflow in `.github/workflows/deploy.yml` will build and publish on every push to `main`.
-
-> Note: edit `baseURL` in `config/_default/hugo.yaml` to your GitHub Pages URL before the first deploy, otherwise links and assets will point at `example.com`.
+Copy an existing page in the same section, replace the body between the `<h1>` and the footer,
+and add a link to it from the section index.
