@@ -31,32 +31,74 @@
   var FAST = 3.5;        /* px per ms that counts as a flick, not a nudge */
   var LEAP = 60;         /* and it must cover this much ground in one go */
 
+  var WINDOW_MS = 140;   /* velocity is measured over this window */
+  var now = (window.performance && performance.now)
+    ? function () { return performance.now(); }
+    : function () { return Date.now(); };
+
   var lastY = window.scrollY;
-  var lastT = Date.now();
+  var hist = [{ t: now(), y: lastY }];   /* recent {time, position} samples */
   var heldUntil = 0;
   var state = 'full';
   var collapseTimer = null;
+  var revealTimer = null;
 
   function collapseGroups() {
     var open = bar.querySelectorAll('details[open]');
     for (var i = 0; i < open.length; i++) open[i].open = false;
   }
 
+  /* Apply a class change with transitions suspended, so it takes effect in
+     one frame instead of animating. */
+  function freeze(fn) {
+    bar.classList.add('no-anim');
+    fn();
+    bar.offsetHeight;            /* flush, so the change lands first */
+    bar.classList.remove('no-anim');
+  }
+
+  /* One rule governs all of this: a height change must never animate at the
+     same time as the slide. Run together, the tier is seen collapsing on the
+     way out or expanding on the way in, which reads as a flicker. So every
+     height change happens either offscreen, instantly, or after the slide
+     has finished. The slide is the only thing the reader watches. */
   function setState(next) {
     if (next === state) return;
+    var prev = state;
     state = next;
 
-    bar.classList.toggle('nav-hidden', next === 'hidden');
-    bar.classList.toggle('nav-compact', next === 'compact');
-
     clearTimeout(collapseTimer);
+    clearTimeout(revealTimer);
+
     if (next === 'hidden') {
-      /* Collapse the groups only once the bar has finished sliding away.
-         Doing it immediately makes the bar visibly shrink first and then
-         slide, which reads as two separate movements. */
+      /* Slide away at whatever height it currently has, then collapse it
+         and shut the groups once it is out of sight. */
+      bar.classList.add('nav-hidden');
       collapseTimer = setTimeout(function () {
-        if (state === 'hidden') collapseGroups();
+        if (state !== 'hidden') return;
+        freeze(function () {
+          bar.classList.add('nav-compact');
+          collapseGroups();
+        });
       }, SLIDE_MS);
+      return;
+    }
+
+    if (next === 'compact') {
+      freeze(function () { bar.classList.add('nav-compact'); });
+      bar.classList.remove('nav-hidden');
+      return;
+    }
+
+    /* full */
+    if (prev === 'hidden') {
+      bar.classList.remove('nav-hidden');        /* slide in, still compact */
+      revealTimer = setTimeout(function () {
+        if (state === 'full') bar.classList.remove('nav-compact');
+      }, SLIDE_MS);                              /* then unfold downward */
+    } else {
+      bar.classList.remove('nav-hidden');
+      bar.classList.remove('nav-compact');       /* already onscreen: unfold */
     }
   }
 
@@ -71,10 +113,12 @@
       return;
     }
     var wasCompact = bar.classList.contains('nav-compact');
-    bar.classList.remove('nav-compact');
-    collapseGroups();
-    document.documentElement.style.setProperty('--bar-h', bar.offsetHeight + 'px');
-    if (wasCompact) bar.classList.add('nav-compact');
+    freeze(function () {
+      bar.classList.remove('nav-compact');
+      collapseGroups();
+      document.documentElement.style.setProperty('--bar-h', bar.offsetHeight + 'px');
+      if (wasCompact) bar.classList.add('nav-compact');
+    });
   }
 
   /* Resync the baseline across the next two frames, after the bar has
@@ -156,13 +200,20 @@
     if (!mobile.matches) { setState('full'); return; }
 
     var y = window.scrollY;
-    var now = Date.now();
+    var t = now();
     var dy = y - lastY;
-    var speed = Math.abs(dy) / Math.max(1, now - lastT);
-    lastT = now;
+
+    /* Velocity across a short window, not a single event. Two events can
+       land in the same millisecond, and dividing by that gives a speed of
+       "one whole delta per ms", which falsely reads as a flick. */
+    hist.push({ t: t, y: y });
+    while (hist.length > 1 && t - hist[0].t > WINDOW_MS) hist.shift();
+    var span = Math.max(16, t - hist[0].t);
+    var travel = y - hist[0].y;
+    var speed = Math.abs(travel) / span;
 
     if (y <= EDGE) { setState('full'); lastY = y; return; }
-    if (now < heldUntil) { lastY = y; return; }
+    if (Date.now() < heldUntil) { lastY = y; return; }
 
     if (dy > DELTA) {
       /* Hide as soon as the reader moves down. The earlier `y > bar height`
@@ -174,8 +225,14 @@
       /* Both tests must pass: a genuine flick is fast AND covers real
          distance. Speed alone fires far too easily, because a mouse wheel
          or a trackpad delivers a burst of pixels in a few milliseconds. */
-      var flick = speed > FAST && -dy > LEAP;
-      setState(flick ? 'full' : 'compact');
+      var flick = speed > FAST && -travel > LEAP;
+
+      /* Scrolling up only ever promotes. A flick is a single fast event
+         followed by slower momentum events, and letting those demote would
+         snap the full bar shut the instant after it opened. Only scrolling
+         back down takes it away. */
+      if (flick) setState('full');
+      else if (state !== 'full') setState('compact');
     }
 
     lastY = y;

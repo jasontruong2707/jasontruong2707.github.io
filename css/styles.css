@@ -450,7 +450,7 @@ footer {
     border-bottom: 1px solid var(--line);
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
     padding: 1.25rem 1.25rem 1rem;
-    transition: transform 0.25s ease;
+    transition: transform 0.22s ease-out;
   }
 
   /* Slid out of the way while the reader is moving down the page.
@@ -459,9 +459,38 @@ footer {
 
   /* Second tier withheld: a gentle scroll back up returns the menu only.
      The name and contact row come back at the top of the page, or on a
-     fast flick up, which reads as "take me out of here". */
+     fast flick up, which reads as "take me out of here".
+
+     Collapsed by height rather than display, so the tier unfolds downward
+     and the bar visibly grows into place. display: none cannot animate. */
+  /* One duration, one easing, no delays. Every property moves together,
+     which is what keeps it reading as a single motion. */
+  .sidebar .site-name,
+  .sidebar .contact {
+    overflow: hidden;
+    transition: max-height 0.22s ease-out, opacity 0.22s ease-out,
+                margin 0.22s ease-out, padding 0.22s ease-out;
+  }
+
+  /* Kept close to the real heights. A max-height far larger than the
+     content finishes early and then sits still, which looks like a stall. */
+  .sidebar .site-name { max-height: 2.6rem; }
+  .sidebar .contact { max-height: 5rem; }
+
   .sidebar.nav-compact .site-name,
-  .sidebar.nav-compact .contact { display: none; }
+  .sidebar.nav-compact .contact {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    border-top-width: 0;
+  }
+
+  /* Measuring must not catch the tier mid-animation */
+  .sidebar.no-anim,
+  .sidebar.no-anim .site-name,
+  .sidebar.no-anim .contact { transition: none !important; }
 
   /* Anchor targets must clear the pinned bar. js/nav.js measures the bar
      and lands exactly; this is the fallback when scripting is off. */
