@@ -32,6 +32,10 @@ html, body { max-width: 100%; overflow-x: clip; }
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar { transition: none; }
+}
 img, video, svg { max-width: 100%; }
 
 body {
@@ -86,7 +90,9 @@ body {
 }
 
 .sidebar nav a:hover { color: var(--side-accent); }
-.sidebar nav a.active { color: var(--side-accent); font-weight: 600; }
+/* Current page: plain text weight, no colour. Colour is reserved for
+   hover, so it always means "this is clickable" rather than "you are here". */
+.sidebar nav a.active { color: var(--side-text); font-weight: 600; }
 
 /* Collapsible nav groups, native <details>, no JavaScript */
 .sidebar .nav-group { margin-bottom: 0.75rem; }
@@ -104,7 +110,7 @@ body {
 
 .sidebar .nav-group > summary::-webkit-details-marker { display: none; }
 .sidebar .nav-group > summary:hover { color: var(--side-accent); }
-.sidebar .nav-group.here > summary { color: var(--side-accent); font-weight: 600; }
+.sidebar .nav-group.here > summary { color: var(--side-text); font-weight: 600; }
 
 /* Chevron sits just after the label, points down, and stays faded
    so it never competes with the nav text */
@@ -137,7 +143,7 @@ body {
 }
 
 .sidebar .nav-group a:first-of-type { margin-top: 0.65rem; }
-.sidebar .nav-group a.active { color: var(--side-accent); font-weight: 600; }
+.sidebar .nav-group a.active { color: var(--side-text); font-weight: 600; }
 
 .sidebar .contact {
   margin-top: 1.5rem;
@@ -427,11 +433,15 @@ footer {
   .sidebar {
     width: 100%;
     height: auto;
-    /* Sticky rather than fixed here: it stays in the flow, so the content
-       below is offset automatically even though the bar's height changes
-       when a nav group is opened or the rows rewrap. */
-    position: sticky;
+    /* Fixed, not sticky. A sticky bar sits in the document flow, so every
+       time it changes height - opening a group, collapsing one, rewrapping
+       - the whole page shifts under the reader. Fixed lets it overlay the
+       content instead, and js/nav.js reserves the space via --bar-h. */
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
+    width: auto;
     z-index: 50;
     /* An opened group cannot swallow the screen */
     max-height: 70vh;
@@ -440,10 +450,20 @@ footer {
     border-bottom: 1px solid var(--line);
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
     padding: 1.25rem 1.25rem 1rem;
+    transition: transform 0.25s ease;
   }
 
-  /* Anchor targets must clear the pinned bar */
+  /* Slid out of the way while the reader is moving down the page.
+     js/nav.js adds and removes this class. */
+  .sidebar.nav-hidden { transform: translateY(-100%); }
+
+  /* Anchor targets must clear the pinned bar. js/nav.js measures the bar
+     and lands exactly; this is the fallback when scripting is off. */
   [id] { scroll-margin-top: 9rem; }
+
+  /* No smooth scrolling on the phone: the bar changes height during a jump,
+     so an animated scroll chases a moving target and visibly overshoots. */
+  html { scroll-behavior: auto; }
   /* Lay the nav out as a wrapped row rather than a tall stack, so the bar
      costs a couple of lines instead of half a phone screen. A group that
      is opened expands downward inside its own row item. */
@@ -466,7 +486,7 @@ footer {
     gap: 0.35rem 1rem;
   }
   .sidebar .contact a { margin-bottom: 0; }
-  main { margin-left: 0; padding: 2rem 1.25rem; }
+  main { margin-left: 0; padding: calc(var(--bar-h, 9rem) + 1.25rem) 1.25rem 2rem; }
   .entry { flex-direction: column; }
   .entry-thumb { width: 100%; max-width: 260px; }
   .tile { min-height: 0; }
