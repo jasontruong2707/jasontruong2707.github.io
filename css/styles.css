@@ -457,6 +457,12 @@ footer {
      js/nav.js adds and removes this class. */
   .sidebar.nav-hidden { transform: translateY(-100%); }
 
+  /* Second tier withheld: a gentle scroll back up returns the menu only.
+     The name and contact row come back at the top of the page, or on a
+     fast flick up, which reads as "take me out of here". */
+  .sidebar.nav-compact .site-name,
+  .sidebar.nav-compact .contact { display: none; }
+
   /* Anchor targets must clear the pinned bar. js/nav.js measures the bar
      and lands exactly; this is the fallback when scripting is off. */
   [id] { scroll-margin-top: 9rem; }
