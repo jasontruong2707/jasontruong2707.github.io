@@ -237,7 +237,7 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 2.5rem 0; }
 
 /* ---------- Intro block ---------- */
 .intro { display: flex; gap: 2rem; flex-wrap: wrap; align-items: flex-start; }
-.intro-photo { width: 180px; flex-shrink: 0; }
+.intro-photo { width: 410px; max-width: 100%; flex-shrink: 0; }
 .intro-photo img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: var(--radius); }
 .intro-text { flex: 1; min-width: 280px; }
 
